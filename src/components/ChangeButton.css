@@ -1,0 +1,8 @@
+.button-list > .button {
+	display: inline-block;
+	margin-left: 15px;
+}
+
+.button-list > .button:nth-child(1) {
+	margin-left: 0px;
+}

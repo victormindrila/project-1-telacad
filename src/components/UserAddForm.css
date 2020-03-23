@@ -1,0 +1,24 @@
+h2 {
+	font-style: italic;
+}
+
+.user-add-form {
+	display: flex;
+	flex-direction: column;
+}
+
+.user-add-form input {
+	max-width: 20%;
+}
+
+.user-add-form input[type=checkbox] {
+	display: inline-block;
+}
+
+.user-add-form label[for=is-gold-client] {
+	display: inline-block;
+}
+
+.user-add-form .error-list {
+	color: red;
+}

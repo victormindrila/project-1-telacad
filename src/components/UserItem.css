@@ -1,0 +1,19 @@
+.user-item {
+	display: flex;
+	flex-direction: column;
+	border: 1px solid grey;
+	background-color: #f0f0ef;
+	border-radius: 5px;
+	padding: 25px;
+	justify-content: center;
+	align-items: center;
+}
+
+.user-item img {
+	width: 180px;
+	margin: 0 auto;
+	border-radius: 5px;
+}
+
+.user-item button {
+}
