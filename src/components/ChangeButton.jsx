@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 import './ChangeButton.css';
 
 function ChangeButton(props) {
@@ -9,10 +11,14 @@ function ChangeButton(props) {
 					<label>{props.label}</label>
 					<input type={props.type} data-type={props.name} onChange={(event) => props.changeFunction(event)} />
 				</div>
-			) : (
+			) : !props.link ? (
 				<button onClick={(event) => props.changeFunction(event)} data-id={props.id}>
 					{props.label}
 				</button>
+			) : (
+				<Link to={props.link}>
+					<button>{props.label}</button>
+				</Link>
 			)}
 		</div>
 	);

@@ -13,6 +13,7 @@ function ButtonList(props) {
 						type={item.type}
 						isInput={item.isInput}
 						changeFunction={item.changeFunction}
+						link={item.link}
 						key={item.id}
 					/>
 				);

@@ -1,7 +1,13 @@
 import React from 'react';
-import UserList from './components/UserList';
-import PostsList from './components/PostsList';
-import ButtonList from './components/ButtonList';
+import { Route, Switch } from 'react-router-dom';
+
+// Pages
+import Home from './pages/Home';
+import Posts from './pages/Posts';
+import About from './pages/About';
+import Page404 from './pages/Page404';
+
+//style
 import './App.css';
 
 class App extends React.Component {
@@ -30,13 +36,13 @@ class App extends React.Component {
 				{
 					label: 'Afiseaza utilizatori',
 					isInput: false,
-					changeFunction: (event) => this.displayUsers(event),
+					link: '/',
 					id: 3
 				},
 				{
 					label: 'Afiseaza postari',
 					isInput: false,
-					changeFunction: (event) => this.displayPosts(event),
+					link: '/posts',
 					id: 4
 				}
 			],
@@ -48,6 +54,7 @@ class App extends React.Component {
 
 	componentDidMount() {
 		this.displayUsers();
+		this.displayPosts();
 	}
 
 	changeColor(event) {
@@ -145,17 +152,26 @@ class App extends React.Component {
 	render() {
 		return (
 			<div className="app" style={{ background: this.state.background, color: this.state.font }}>
-				<div className="container">
-					<h1>Admin panel - Proiectul 1</h1>
-					<ButtonList buttons={this.state.buttons} />
-					<UserList
-						users={this.state.users}
-						changeFunction={(event) => this.deleteUser(event)}
-						submitAddForm={(event, name, email, isGoldClient) => this.submitAddForm(event, name, email, isGoldClient)}
-						errors={this.state.errors}
+				<Switch>
+					<Route
+						exact
+						path="/"
+						render={() => (
+							<Home
+								buttons={this.state.buttons}
+								users={this.state.users}
+								changeFunction={(event) => this.deleteUser(event)}
+								submitAddForm={(event, name, email, isGoldClient) =>
+									this.submitAddForm(event, name, email, isGoldClient)}
+								errors={this.state.errors}
+								posts={this.state.posts}
+							/>
+						)}
 					/>
-					{this.state.posts.length !== 0 ? <PostsList posts={this.state.posts} /> : null}
-				</div>
+					<Route path="/about" component={About} />
+					<Route path="/posts" render={() => <Posts buttons={this.state.buttons} posts={this.state.posts} />} />
+					<Route path="*" render={() => <Page404 buttons={this.state.buttons} />} />
+				</Switch>
 			</div>
 		);
 	}
